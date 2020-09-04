@@ -18,4 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//localhost:8000/api/{route}
+Route::get("/catalogo", function(){
+
+    $books = [
+        "1" => [
+            "title" => "El Principito",
+            "author" => "Antoine de Saint-Exupéry"
+        ],
+        "2" => [
+            "title" => "Los Miserables",
+            "author" => "Víctor Hugo"
+        ]
+    ];
+
+    //return response()->json($books);
+
+    return $books;
+
+});

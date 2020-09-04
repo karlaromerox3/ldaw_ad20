@@ -8,6 +8,7 @@
 
         <h1><?php echo $book["title"] ?></h1>
         <strong>Autor: </strong> <?php echo $book["author"]; ?>
+        <strong>Autor: </strong> <?php echo $type; ?>
 
     </body>
 </html>

@@ -28,10 +28,10 @@ Acciones HTTP: post, get, put, delete, patch, options
 Atajo para devolver vistas estáticas
 Asume que es GET
 */
-
 Route::view('/',"welcome");
 
 //Ruta más básica (catálogo de libros)
+
 Route::get('/books', function(){
 
     $books = [
@@ -70,10 +70,25 @@ Route::get('/book/{id?}', function($id = "1"){
     return view("book", ["book" => $books[$id]]);
 });
 
-//Rutas con nombre
+/*
+Rutas con nombre
+Facilita la creación de rutas en otras partes del código
+*/
+Route::get("/prestamos", function(){
+    return view("prestamos");
+})->name("prest");
 
-//Rutas que apuntan a controles
+/*
+Rutas que apuntan a controles
 
-//Rutas que devuelven JSON
+El segundo parámetro debe ser un string con el formato: nombreControl@metodoEjecutar
+
+El control tiene que existir en "app/Http/Controllers"
+*/
+Route::get("/catalogo", "BooksController@index");
+
+Route::get('/libro/{id}/{type?}',"BooksController@show");
+
+//Rutas que devuelven JSON (api.php)
 
 //Generación de rutas en las vistas
