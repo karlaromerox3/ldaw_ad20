@@ -29,18 +29,28 @@
 
         <main class="container-fluid">
 
-            <h1>Catálogo de libros</h1>
+            <h2>Catálogo de libros</h2>
 
-            <?php foreach($books as $id => $book){ ?>
+            <section class="row catalog card-group">
 
-                <div class="">
-                    <strong>Título: </strong><?php echo $book["title"]; ?><br/>
-                    <strong>Autor: </strong><?php echo $book["author"]; ?>
-                </div>
+                <?php foreach($books as $id => $book){ ?>
 
-                <hr/>
+                    <div class="col-3 book-item">
 
-            <?php } ?>
+                        <div class="card rounded">
+                          <img class="card-img-top" src="https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><?php echo $book["title"]; ?></h5>
+                            <p class="card-text"><?php echo $book["author"]; ?></p>
+                            <a href="#" class="btn">Ver Detalle</a>
+                          </div>
+                        </div>
+
+                    </div>
+
+                <?php } ?>
+
+            </section>
 
         </main>
 
