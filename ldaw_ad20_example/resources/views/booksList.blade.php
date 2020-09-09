@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Catálogo de libros</title>
+{{-- Indica que la vista actual hereda de otra y va a inyectar contenidos en ella --}}
+@extends("layout")
 
-        <!-- JQUERY -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <!-- Bootstrap --->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <!-- main css -->
-        <link rel="stylesheet" href="<?php echo url('/css/main.css'); ?>" />
+@section("pageTitle", "Catálogo de libros")
 
-    </head>
-    <body>
+@section("javascript")
+    @parent
+    <script src="mi_script.js"></script>
+@show
 
-        <header class="container-fluid">
-            <h1>APP de Ejemplo LDAW</h1>
-        </header>
+{{-- Contenido principal --}}
+@section("mainContent")
 
-        <nav class="container-fluid">
-            <ul class="row">
-                <li class="col"><a href="<?php echo url('/catalogo'); ?>">Catálogo</a></li>
-                <li class="col"><a href="<?php echo route('prest'); ?>">Registro de Préstamos</a></li>
-                <li class="col"><a href="">Mis Préstamos</a></li>
-            </ul>
-        </nav>
+    <h2>Catálogo de libros</h2>
 
-        <main class="container-fluid">
+    <section class="row catalog card-group">
 
-            <h2>Catálogo de libros</h2>
+        <?php foreach($books as $isbn => $book){ ?>
 
-            <section class="row catalog card-group">
+            <div class="col-3 book-item">
 
-                <?php foreach($books as $id => $book){ ?>
+                <div class="card rounded">
+                  <img class="card-img-top" src="<?php echo url('img/books/' . $isbn . ".jpg");  ?>" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $book["title"]; ?></h5>
+                    <p class="card-text"><?php echo implode(", ", $book["authors"]); ?></p>
+                    <a href="#" class="btn">Ver Detalle</a>
+                  </div>
+                </div>
 
-                    <div class="col-3 book-item">
+            </div>
 
-                        <div class="card rounded">
-                          <img class="card-img-top" src="https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title"><?php echo $book["title"]; ?></h5>
-                            <p class="card-text"><?php echo $book["author"]; ?></p>
-                            <a href="#" class="btn">Ver Detalle</a>
-                          </div>
-                        </div>
+        <?php } ?>
 
-                    </div>
+    </section>
 
-                <?php } ?>
-
-            </section>
-
-        </main>
-
-        <footer class="container-fluid">
-            <p>Erik Sánchez - LDAW AD20</p>
-        </footer>
-
-    </body>
-</html>
+@endsection

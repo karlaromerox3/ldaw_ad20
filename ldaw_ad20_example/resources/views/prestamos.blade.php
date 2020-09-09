@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Registrar Préstamo</title>
-    </head>
-    <body>
+{{-- Indica que la vista actual hereda de otra y va a inyectar contenidos en ella --}}
+@extends("layout")
 
-        <h1>Registrar Préstamo</h1>
+@section("mainContent")
 
-    </body>
-</html>
+    <h1>Registrar Préstamo</h1>
+
+@endsection

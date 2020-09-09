@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 
 class BooksController extends Controller{
 
-    private $books = [
-        "1" => [
-            "title" => "El Principito",
-            "author" => "Antoine de Saint-Exupéry"
-        ],
-        "2" => [
-            "title" => "Los Miserables",
-            "author" => "Víctor Hugo"
-        ]
-    ];
+    //Carga de archivo
+    private function readBooks(){
+        //Cargar el archivo
+        $filePath = storage_path("app/json/books.json");
+
+        if($data = file_get_contents($filePath)){
+            //Devolver los datos como un arreglo
+            return json_decode($data, true);
+        }
+
+        return false;
+
+    }
 
     //Catálogo de libros
     function index(){
@@ -28,8 +31,19 @@ class BooksController extends Controller{
         5.- La vista renderiza los datos
         */
 
+        //cargar el archivo
+        $books = $this->readBooks();
+
+        /*
+        echo "<pre>";
+        var_dump($books);
+        echo "</pre>";
+
+        die();
+        */
+
         //Se envía la información a la vista en un segundo parámetro
-        return view('booksList', ["books" => $this->books]);
+        return view('booksList', ["books" => $books]);
     }
 
     //Detalle de libro
