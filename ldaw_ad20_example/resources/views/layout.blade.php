@@ -26,13 +26,9 @@
             <h1>APP de Ejemplo LDAW</h1>
         </header>
 
-        <nav class="container-fluid">
-            <ul class="row">
-                <li class="col"><a href="<?php echo url('/catalogo'); ?>">Catálogo</a></li>
-                <li class="col"><a href="<?php echo route('prest'); ?>">Registro de Préstamos</a></li>
-                <li class="col"><a href="">Mis Préstamos</a></li>
-            </ul>
-        </nav>
+        @section("mainNavigation")
+            <x-mainNav />
+        @show
 
         <main class="container-fluid">
 
