@@ -3,13 +3,13 @@
 // php me permite insertar bloques de código en PHP
 
 function getClass($url){
-    $classes = ["center"];
-    //http://localhost:8000/catalogo
-    ///catalogo
-    $classes[] = strpos($url,request()->path()) ? "active" : "";
 
-    return trim(implode(" ",$classes));
+    $regExp = "/" . str_replace("/", "\\/", $url) . "(\/|$)/";
+    $classes = [];
+    $classes[] = preg_match($regExp, "/" . request()->path()) ? "active" : "";
 
+    return trim(implode(" ", $classes));
+    
 }
 
 @endphp

@@ -85,9 +85,21 @@ El segundo parámetro debe ser un string con el formato: nombreControl@metodoEje
 
 El control tiene que existir en "app/Http/Controllers"
 */
+/*
 Route::get("/catalogo", "BooksController@index");
 
 Route::get('/libro/{id}/{type?}',"BooksController@show");
+
+Route::get("/test", "TestController@testMethod");
+Route::get("/test-dos", "TestController@testMethod");
+*/
+
+// Mapeo automático de rutas hacia "resource controllers"
+//Route::resource('books', 'BooksController');
+Route::resources([
+    'books' => 'BooksController',
+    'authors' => 'AuthorsController',
+]);
 
 //Rutas que devuelven JSON (api.php)
 
