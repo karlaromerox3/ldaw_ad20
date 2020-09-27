@@ -3,26 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BooksController extends Controller{
-
-    /**
-     * Read books from JSON file.
-     *
-     * @return String
-     */
-    private function readBooks(){
-        //Cargar el archivo
-        $filePath = storage_path("app/json/books.json");
-
-        if($data = file_get_contents($filePath)){
-            //Devolver los datos como un arreglo
-            return json_decode($data, true);
-        }
-
-        return false;
-
-    }
 
     /**
      * Display a listing of the resource.
@@ -40,18 +23,10 @@ class BooksController extends Controller{
         */
 
         //cargar el archivo
-        $books = $this->readBooks();
-
-        /*
-        echo "<pre>";
-        var_dump($books);
-        echo "</pre>";
-
-        die();
-        */
+        $response = Http::get(env("API_URL") . 'books');
 
         //Se envía la información a la vista en un segundo parámetro
-        return view('booksList', ["books" => $books]);
+        return view('booksList', ["books" => $response->json()]);
 
     }
 
