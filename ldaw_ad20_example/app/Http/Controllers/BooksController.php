@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+
+// Importar el modelo
+use App\Models\Books;
 
 class BooksController extends Controller{
 
@@ -22,11 +24,10 @@ class BooksController extends Controller{
         5.- La vista renderiza los datos
         */
 
-        //cargar el archivo
-        $response = Http::get(env("API_URL") . 'books');
+        $books = Books::getBooks();
 
         //Se envía la información a la vista en un segundo parámetro
-        return view('booksList', ["books" => $response->json()]);
+        return view('booksList', ["books" => $books]);
 
     }
 
